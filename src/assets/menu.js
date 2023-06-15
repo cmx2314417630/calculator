@@ -2,15 +2,98 @@ const menu = [
     {
         id:1,
         name:'体重指数（BMI）',
-        icon:'',
         route:'BMI'
     },
     {
         id:2,
         name:'体表面积（BSA）',
-        icon:'',
         route:'BSA'
-    }
+    },
+    {
+        id:3,
+        name:'血透Kt/V（经典法）',
+        route:'xtKTV'
+    },
+    {
+        id:4,
+        name:'nPNA-透析前',
+        route:'nPNA'
+    },
+    {
+        id:5,
+        name:'腹透-Kt/V',
+        route:'ftKTV'
+    },
+    {
+        id:6,
+        name:'腹透Ccr',
+        route:'ftCcr'
+    },
+    {
+        id:7,
+        name:'nPNA-腹膜透析',
+        route:'nPNA'
+    },
+    {
+        id:8,
+        name:'残肾尿素清除率',
+        route:'csnsqcl'
+    },
+    {
+        id:9,
+        name:'肾衰指数（RFI）',
+        route:'RFI'
+    },
+    {
+        id:10,
+        name:'滤过钠排泄分数',
+        route:'lgnpxfs'
+    },
+    {
+        id:11,
+        name:'血清尿素氮肌酐比',
+        route:'xqnsajcb'
+    },
+    {
+        id:12,
+        name:'残余肾功能（RRF）',
+        route:'RRF'
+    },
+    {
+        id:13,
+        name:'蛋白质摄入量（DPI）',
+        route:'DPI'
+    },
+    {
+        id:14,
+        name:'CKD-EPI（肌酐）',
+        route:'CKDEPI'
+    },
+    {
+        id:15,
+        name:'CKD-EPI（胱抑素C）',
+        route:'CKDEPIC'
+    },
+    {
+        id:16,
+        name:'肾小球滤过率（MDRD）',
+        route:'MDRD'
+    },
+    {
+        id:17,
+        name:'空腹胰岛素（HOMA）',
+        route:'HOMA'
+    },
+    {
+        id:18,
+        name:'内生肌酐清除率-CG公式',
+        route:'nscjqclCG'
+    },
+    {
+        id:19,
+        name:'尿蛋白排泄量估计值',
+        route:'ndbpxlgjz'
+    },
 ]
 
 export default menu

@@ -8,6 +8,17 @@ const routes = [
     path: "/",
     name: "home",
     component: () => import("../views/Home.vue"),
+    meta: {
+      title: "医学计算器",
+    },
+  },
+  {
+    path: "*",
+    name: "404",
+    component: () => import("../views/404.vue"),
+    meta: {
+      title: "未找到该页面",
+    },
   },
   {
     path: "/index",
