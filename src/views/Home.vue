@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <div class="header"></div>
     <div class="content">
       <div class="search">
         <el-input
@@ -16,48 +15,42 @@
           >搜索</el-button
         >
       </div>
-        <div class="card">
-          <div
-            class="item"
-            v-for="item in menu"
-            :key="item.id"
-            @click="godetails(item.route)"
-          >
-            <div class="name">{{ item.name }}</div>
-            <div class="icon"><i class="el-icon-arrow-right"></i></div>
-          </div>
-          <div v-if="menu.length === 0">未搜索到关键字</div>
+      <div class="card">
+        <div
+          class="item"
+          v-for="item in menu"
+          :key="item.id"
+          @click="godetails(item)"
+        >
+          <div class="name">{{ item.name }}</div>
+          <div class="icon"><i class="el-icon-arrow-right"></i></div>
         </div>
+        <div v-if="menu.length === 0">未搜索到关键字</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
-import menu from "@/assets/menu.js";
-
 export default {
   name: "HomeView",
-  components: {
-    HelloWorld,
-  },
   data() {
     return {
       input: "",
-      menu,
+      menu: this.$menu,
     };
   },
   created() {},
   methods: {
-    godetails(name) {
-      this.$router.push({ name });
+    godetails(item) {
+      this.$router.push({ name: item.route, params: item });
     },
     // 搜索
     serachHandle() {
       if (this.input == "") {
-        return (this.menu = menu);
+        return (this.menu = this.$menu);
       }
-      let patt = new RegExp(this.input,'i') 
+      let patt = new RegExp(this.input, "i");
       this.menu = this.menu.filter((item) => {
         if (patt.test(item.name)) {
           return item;
@@ -69,23 +62,14 @@ export default {
 </script>
 <style scoped lang="scss">
 .home {
-  background: #fff;
-  position: relative;
-  .header {
-    position: absolute;
-    width: 100%;
-    height: 240px;
-    background: url("@/assets/home-header.png") no-repeat;
-    background-size: 100% 100%;
-    z-index: 0;
-  }
-
+  background: url("@/assets/home-header.png") no-repeat;
+  background-size: 100%, 100%;
   .content {
-    position: absolute;
     box-sizing: border-box;
     width: 100vw;
     z-index: 999;
     padding: 15px;
+    padding-bottom: 50px;
     .search {
       padding: 15px 0;
       color: #fff;
