@@ -1,0 +1,135 @@
+.details {
+
+    .el-form-item.is-error .el-input__inner,
+    .el-form-item.is-error .el-input__inner:focus,
+    .el-form-item.is-error .el-textarea__inner,
+    .el-form-item.is-error .el-textarea__inner:focus {
+        border-color: red !important;
+    }
+
+    .el-dialog__body {
+        padding: 15px 0;
+    }
+
+    .el-select {
+        width: 100%;
+    }
+
+    .el-dialog__header {
+        padding: 0;
+    }
+
+    .el-form-item {
+        background: #f6f6f6;
+        border-radius: 10px;
+        padding: 5px 15px;
+        margin-bottom: 10px;
+    }
+
+    .el-input__inner {
+        background: #f6f6f6;
+        border-color: #f6f6f6;
+        padding: 0 !important;
+    }
+
+    .el-form-item__label {
+        font-weight: bold;
+        font-size: 16px;
+        padding: 0;
+    }
+
+    .result {
+        color: #fff;
+        padding-bottom: 25px;
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .form {
+        padding-bottom: 35px;
+
+        .title {
+            color: #fff;
+            text-align: left;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+
+        .formbox {
+            background: #ffffff;
+            box-shadow: 0px 3px 18px 1px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            padding: 15px;
+
+            position: relative;
+
+            .btns {
+                padding-top: 30px;
+                display: flex;
+                justify-content: space-between;
+
+                .el-button {
+                    flex: 1;
+                    height: 50px;
+                    border-radius: 25px;
+                    box-sizing: border-box;
+                }
+
+                .resetbtn {
+                    border: 1px solid #3f6cde;
+                    color: #3f6cde;
+                }
+
+                .countbtn {
+                    background: #3f6cde;
+                    border: 1px solid #3f6cde;
+                    color: #fff;
+                }
+            }
+
+            p {
+                color: #333333;
+            }
+
+            .icon {
+                position: absolute;
+                left: 10px;
+                top: -20px;
+                color: #fff;
+                font-size: 30px;
+            }
+        }
+    }
+
+    .range {
+        text-align: left;
+        padding-bottom: 25px;
+
+        h2 {
+            padding-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .rangebox {
+            padding: 15px;
+            font-size: 15px;
+            background: #f7f7f7;
+            border-radius: 10px;
+            color: #656565;
+            line-height: 24px;
+
+            .line {
+                margin: 10px 0;
+                height: 1px;
+                background: #dddddd;
+            }
+        }
+    }
+}

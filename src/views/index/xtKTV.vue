@@ -20,37 +20,53 @@
           :model="form"
           :hide-required-asterisk="true"
           :rules="rules"
-          label-width="60px"
+          label-width="180px"
           :show-message="false"
           label-position="left"
         >
-          <el-form-item label="性别：">
-            <el-select v-model="form.sex" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="身高：" prop="height">
+          <el-form-item label="透析后血尿素氮浓度：" prop="txhxnsdnd">
             <el-input
-              v-model.trim="form.height"
+              v-model.trim="form.txhxnsdnd"
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">CM</p>
+              <p slot="suffix">mg/dl</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="体重：" prop="weight">
+          <el-form-item label="透析前血尿素氮浓度：" prop="txqxnsdnd">
             <el-input
-              v-model.trim="form.weight"
+              v-model.trim="form.txqxnsdnd"
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">KG</p>
+              <p slot="suffix">mg/dl</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="透析时间(小时)：" prop="txsj">
+            <el-input
+              v-model.trim="form.txsj"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">h</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="透析超滤量：" prop="txcll">
+            <el-input
+              v-model.trim="form.txcll"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="透析后体重：" prop="txhtz">
+            <el-input
+              v-model.trim="form.txhtz"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">Kg</p>
             </el-input>
           </el-form-item>
         </el-form>
@@ -64,9 +80,7 @@
     </div>
     <div class="range" v-if="menuObj.range">
       <h2>正常范围</h2>
-      <div class="rangebox" v-html="menuObj.range">
-
-      </div>
+      <div class="rangebox" v-html="menuObj.range"></div>
     </div>
     <div class="range" v-if="menuObj.explain">
       <h2>计算公式</h2>
@@ -84,7 +98,7 @@
 </template>
 <script>
 import DialogMod from "@/components/DialogMod.vue";
-import '@/assets/details.scss'
+import "@/assets/details.scss";
 export default {
   data() {
     return {
@@ -96,14 +110,18 @@ export default {
         { value: 2, label: "女" },
       ],
       form: {
-        sex: "",
-        height: "",
-        weight: "",
+        txhxnsdnd: "",
+        txqxnsdnd: "",
+        txsj: "",
+        txcll: "",
+        txhtz: "",
       },
       rules: {
-        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
-        height: [{ required: true, message: "请输入", trigger: "change" }],
-        weight: [{ required: true, message: "请输入", trigger: "change" }],
+        txhxnsdnd: [{ required: true, message: "请输入", trigger: "change" }],
+        txqxnsdnd: [{ required: true, message: "请输入", trigger: "change" }],
+        txsj: [{ required: true, message: "请输入", trigger: "change" }],
+        txcll: [{ required: true, message: "请输入", trigger: "change" }],
+        txhtz: [{ required: true, message: "请输入", trigger: "change" }],
       },
     };
   },
@@ -121,7 +139,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.BSAFormula(this.form);
+          this.total = this.$api.xuetouKTVFormula(this.form);
         } else {
           return false;
         }
@@ -140,6 +158,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

@@ -20,7 +20,7 @@
           :model="form"
           :hide-required-asterisk="true"
           :rules="rules"
-          label-width="60px"
+          label-width="100px"
           :show-message="false"
           label-position="left"
         >
@@ -41,16 +41,34 @@
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">CM</p>
+              <p slot="suffix">cm</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="体重：" prop="weight">
+          <el-form-item label="尿量：" prop="nl">
             <el-input
-              v-model.trim="form.weight"
+              v-model.trim="form.nl"
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">KG</p>
+              <p slot="suffix">L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="尿尿素氮：" prop="nnsd">
+            <el-input
+              v-model.trim="form.nnsd"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">mmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="尿蛋白流失：" prop="ndbls">
+            <el-input
+              v-model.trim="form.ndbls"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">g/d</p>
             </el-input>
           </el-form-item>
         </el-form>
@@ -64,9 +82,7 @@
     </div>
     <div class="range" v-if="menuObj.range">
       <h2>正常范围</h2>
-      <div class="rangebox" v-html="menuObj.range">
-
-      </div>
+      <div class="rangebox" v-html="menuObj.range"></div>
     </div>
     <div class="range" v-if="menuObj.explain">
       <h2>计算公式</h2>
@@ -84,7 +100,7 @@
 </template>
 <script>
 import DialogMod from "@/components/DialogMod.vue";
-import '@/assets/details.scss'
+import "@/assets/details.scss";
 export default {
   data() {
     return {
@@ -96,14 +112,17 @@ export default {
         { value: 2, label: "女" },
       ],
       form: {
-        sex: "",
-        height: "",
-        weight: "",
+        sex:"",
+        height:"",
+        nl:"",
+        nnsd:"",
+        ndbls:"",
       },
       rules: {
-        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
+        sex: [{ required: true, message: "请输入", trigger: "change" }],
         height: [{ required: true, message: "请输入", trigger: "change" }],
-        weight: [{ required: true, message: "请输入", trigger: "change" }],
+        nnsd: [{ required: true, message: "请输入", trigger: "change" }],
+        ndbls: [{ required: true, message: "请输入", trigger: "change" }],
       },
     };
   },
@@ -121,7 +140,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.BSAFormula(this.form);
+          this.total = this.$api.nPNAFormula(this.form);
         } else {
           return false;
         }
@@ -140,6 +159,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

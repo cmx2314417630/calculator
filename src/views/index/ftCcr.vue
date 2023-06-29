@@ -20,11 +20,11 @@
           :model="form"
           :hide-required-asterisk="true"
           :rules="rules"
-          label-width="60px"
+          label-width="150px"
           :show-message="false"
           label-position="left"
         >
-          <el-form-item label="性别：">
+          <el-form-item label="性别：" prop="sex">
             <el-select v-model="form.sex" placeholder="请选择">
               <el-option
                 v-for="item in options"
@@ -41,7 +41,7 @@
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">CM</p>
+              <p slot="suffix">cm</p>
             </el-input>
           </el-form-item>
           <el-form-item label="体重：" prop="weight">
@@ -50,7 +50,71 @@
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">KG</p>
+              <p slot="suffix">kg</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="尿肌酐：" prop="njg">
+            <el-input
+              v-model.trim="form.njg"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">μmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="24h总尿量：" prop="nl24h">
+            <el-input
+              v-model.trim="form.nl24h"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">ml</p>
+            </el-input>
+          </el-form-item>
+
+          <el-form-item label="血肌酐：" prop="xjg">
+            <el-input
+              v-model.trim="form.xjg"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">μmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="尿尿素氮：" prop="nnsd">
+            <el-input
+              v-model.trim="form.nnsd"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">mmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="血尿素氮：" prop="xnsd">
+            <el-input
+              v-model.trim="form.xnsd"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">mmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="透析液校正肌酐：" prop="txyxzjg">
+            <el-input
+              v-model.trim="form.txyxzjg"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">μmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="腹透液引流总量：" prop="ftyylzl">
+            <el-input
+              v-model.trim="form.ftyylzl"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">ml/24h</p>
             </el-input>
           </el-form-item>
         </el-form>
@@ -64,9 +128,7 @@
     </div>
     <div class="range" v-if="menuObj.range">
       <h2>正常范围</h2>
-      <div class="rangebox" v-html="menuObj.range">
-
-      </div>
+      <div class="rangebox" v-html="menuObj.range"></div>
     </div>
     <div class="range" v-if="menuObj.explain">
       <h2>计算公式</h2>
@@ -84,7 +146,7 @@
 </template>
 <script>
 import DialogMod from "@/components/DialogMod.vue";
-import '@/assets/details.scss'
+import "@/assets/details.scss";
 export default {
   data() {
     return {
@@ -99,11 +161,25 @@ export default {
         sex: "",
         height: "",
         weight: "",
+        nl24h: "",
+        njg: "",
+        xjg: "",
+        nnsd: "",
+        xnsd: "",
+        txyxzjg: "",
+        ftyylzl: "",
       },
       rules: {
-        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
+        sex: [{ required: true, message: "请输入", trigger: "change" }],
         height: [{ required: true, message: "请输入", trigger: "change" }],
         weight: [{ required: true, message: "请输入", trigger: "change" }],
+        nl24h: [{ required: true, message: "请输入", trigger: "change" }],
+        njg: [{ required: true, message: "请输入", trigger: "change" }],
+        xjg: [{ required: true, message: "请输入", trigger: "change" }],
+        nnsd: [{ required: true, message: "请输入", trigger: "change" }],
+        xnsd: [{ required: true, message: "请输入", trigger: "change" }],
+        txyxzjg: [{ required: true, message: "请输入", trigger: "change" }],
+        ftyylzl: [{ required: true, message: "请输入", trigger: "change" }],
       },
     };
   },
@@ -121,7 +197,6 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.BSAFormula(this.form);
         } else {
           return false;
         }
@@ -140,6 +215,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

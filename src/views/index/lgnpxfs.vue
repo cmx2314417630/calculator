@@ -20,37 +20,36 @@
           :model="form"
           :hide-required-asterisk="true"
           :rules="rules"
-          label-width="60px"
+          label-width="80px"
           :show-message="false"
           label-position="left"
         >
-          <el-form-item label="性别：">
-            <el-select v-model="form.sex" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="身高：" prop="height">
-            <el-input
-              v-model.trim="form.height"
-              type="number"
-              placeholder="请输入"
-            >
-              <p slot="suffix">CM</p>
+          <el-form-item label="尿钠：" prop="nn">
+            <el-input v-model.trim="form.nn" type="number" placeholder="请输入">
+              <p slot="suffix">mmol/L</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="体重：" prop="weight">
+          <el-form-item label="血肌酐：" prop="xjg">
             <el-input
-              v-model.trim="form.weight"
+              v-model.trim="form.xjg"
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">KG</p>
+              <p slot="suffix">μmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="血钠：" prop="xn">
+            <el-input v-model.trim="form.xn" type="number" placeholder="请输入">
+              <p slot="suffix">mmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="尿肌酐：" prop="njg">
+            <el-input
+              v-model.trim="form.njg"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">μmol/L</p>
             </el-input>
           </el-form-item>
         </el-form>
@@ -64,9 +63,7 @@
     </div>
     <div class="range" v-if="menuObj.range">
       <h2>正常范围</h2>
-      <div class="rangebox" v-html="menuObj.range">
-
-      </div>
+      <div class="rangebox" v-html="menuObj.range"></div>
     </div>
     <div class="range" v-if="menuObj.explain">
       <h2>计算公式</h2>
@@ -84,7 +81,7 @@
 </template>
 <script>
 import DialogMod from "@/components/DialogMod.vue";
-import '@/assets/details.scss'
+import "@/assets/details.scss";
 export default {
   data() {
     return {
@@ -96,14 +93,16 @@ export default {
         { value: 2, label: "女" },
       ],
       form: {
-        sex: "",
-        height: "",
-        weight: "",
+        nn: "",
+        xjg: "",
+        xn: "",
+        njg: "",
       },
       rules: {
-        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
-        height: [{ required: true, message: "请输入", trigger: "change" }],
-        weight: [{ required: true, message: "请输入", trigger: "change" }],
+        nn: [{ required: true, message: "请输入", trigger: "change" }],
+        xjg: [{ required: true, message: "请输入", trigger: "change" }],
+        xn: [{ required: true, message: "请输入", trigger: "change" }],
+        njg: [{ required: true, message: "请输入", trigger: "change" }],
       },
     };
   },
@@ -121,7 +120,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.BSAFormula(this.form);
+          this.total = this.$api.RFIFormula(this.form);
         } else {
           return false;
         }
@@ -129,7 +128,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-      this.total = 0
+      this.total = 0;
     },
     changelist() {
       if (this.menuObj.id) {
@@ -140,6 +139,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

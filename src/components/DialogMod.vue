@@ -25,8 +25,11 @@ export default {
   },
   created() {},
   methods: {
-    SelectMenu(data){
-      this.$router.push({ name: data.route, params: data });
+    SelectMenu(item){
+      if (item.id === this.MenuKey) {
+        return
+      }
+      this.$router.push({ name: item.route, params: item });
     }
   },
 };
