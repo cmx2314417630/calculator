@@ -105,6 +105,78 @@ const routes = [
           title: "滤过钠排泄分数",
         },
       },
+      {
+        path: "/xqnsajcb",
+        name: "xqnsajcb",
+        component: (resolve) => require(["@/views/index/xqnsajcb"], resolve),
+        meta: {
+          title: "血清尿素氮肌酐比（BUN/Cr）",
+        },
+      },
+      {
+        path: "/RRF",
+        name: "RRF",
+        component: (resolve) => require(["@/views/index/RRF"], resolve),
+        meta: {
+          title: "残余肾功能（RRF）",
+        },
+      },
+      {
+        path: "/DPI",
+        name: "DPI",
+        component: (resolve) => require(["@/views/index/DPI"], resolve),
+        meta: {
+          title: "蛋白质摄入量（DPI）",
+        },
+      },
+      {
+        path: "/CKDEPI",
+        name: "CKDEPI",
+        component: (resolve) => require(["@/views/index/CKDEPI"], resolve),
+        meta: {
+          title: "CKD-EPI（肌酐）",
+        },
+      },
+      {
+        path: "/CKDEPIC",
+        name: "CKDEPIC",
+        component: (resolve) => require(["@/views/index/CKDEPIC"], resolve),
+        meta: {
+          title: "CKD-EPI（胱抑素C）",
+        },
+      },
+      {
+        path: "/MDRD",
+        name: "MDRD",
+        component: (resolve) => require(["@/views/index/MDRD"], resolve),
+        meta: {
+          title: "CKD-EPI（胱抑素C）",
+        },
+      },
+      {
+        path: "/HOMA",
+        name: "HOMA",
+        component: (resolve) => require(["@/views/index/HOMA"], resolve),
+        meta: {
+          title: "空腹胰岛素（HOMA）",
+        },
+      },
+      {
+        path: "/nscjqclCG",
+        name: "nscjqclCG",
+        component: (resolve) => require(["@/views/index/nscjqclCG"], resolve),
+        meta: {
+          title: "内生肌酐清除率-CG公式",
+        },
+      },
+      {
+        path: "/ndbpxlgjz",
+        name: "ndbpxlgjz",
+        component: (resolve) => require(["@/views/index/ndbpxlgjz"], resolve),
+        meta: {
+          title: "尿蛋白排泄量估计值",
+        },
+      },
     ],
   },
 ];
