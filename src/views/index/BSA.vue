@@ -64,9 +64,7 @@
     </div>
     <div class="range" v-if="menuObj.range">
       <h2>正常范围</h2>
-      <div class="rangebox" v-html="menuObj.range">
-
-      </div>
+      <div class="rangebox" v-html="menuObj.range"></div>
     </div>
     <div class="range" v-if="menuObj.explain">
       <h2>计算公式</h2>
@@ -84,7 +82,7 @@
 </template>
 <script>
 import DialogMod from "@/components/DialogMod.vue";
-import '@/assets/details.scss'
+import "@/assets/details.scss";
 export default {
   data() {
     return {
@@ -100,17 +98,18 @@ export default {
         height: "",
         weight: "",
       },
-      rules: {
-        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
-        height: [{ required: true, message: "请输入", trigger: "change" }],
-        weight: [{ required: true, message: "请输入", trigger: "change" }],
-      },
+      rules: {},
     };
   },
   components: {
     DialogMod,
   },
   created() {
+    for (const key in this.form) {
+      this.rules[key] = [
+        { required: true, message: "请输入", trigger: "change" },
+      ];
+    }
     if (this.$route.params.id && this.$route.params.name) {
       this.menuObj = this.$route.params;
     } else {
@@ -129,7 +128,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-      this.total = 0
+      this.total = 0;
     },
     changelist() {
       if (this.menuObj.id) {
@@ -140,6 +139,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

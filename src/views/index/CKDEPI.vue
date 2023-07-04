@@ -20,27 +20,18 @@
           :model="form"
           :hide-required-asterisk="true"
           :rules="rules"
-          label-width="80px"
+          label-width="120px"
           :show-message="false"
           label-position="left"
         >
-          <el-form-item label="尿钠：" prop="nn">
-            <el-input v-model.trim="form.nn" type="number" placeholder="请输入">
+          <el-form-item label="年龄：" prop="age">
+            <el-input v-model.trim="form.age" type="number" placeholder="请输入">
               <p slot="suffix">mmol/L</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="血肌酐：" prop="xjg">
+          <el-form-item label="血清肌酐：" prop="xqjg">
             <el-input
-              v-model.trim="form.xjg"
-              type="number"
-              placeholder="请输入"
-            >
-              <p slot="suffix">μmol/L</p>
-            </el-input>
-          </el-form-item>
-          <el-form-item label="尿肌酐：" prop="njg">
-            <el-input
-              v-model.trim="form.njg"
+              v-model.trim="form.xqjg"
               type="number"
               placeholder="请输入"
             >
@@ -84,9 +75,8 @@ export default {
       menuObj: {}, //菜单对象
       dialogVisible: false,
       form: {
-        nn: "",
-        xjg: "",
-        njg: "",
+        age: "",
+        xqjg: "",
       },
       rules: {},
     };

@@ -24,27 +24,28 @@
           :show-message="false"
           label-position="left"
         >
-          <el-form-item label="尿钠：" prop="nn">
+          <el-form-item label="性别：" prop="sex">
+            <el-select v-model="form.sex" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="年龄：" prop="age">
             <el-input
-              v-model.trim="form.nn"
+              v-model.trim="form.age"
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">mmol/L</p>
             </el-input>
           </el-form-item>
           <el-form-item label="血肌酐：" prop="xjg">
             <el-input
               v-model.trim="form.xjg"
-              type="number"
-              placeholder="请输入"
-            >
-              <p slot="suffix">μmol/L</p>
-            </el-input>
-          </el-form-item>
-          <el-form-item label="尿肌酐：" prop="njg">
-            <el-input
-              v-model.trim="form.njg"
               type="number"
               placeholder="请输入"
             >
@@ -92,21 +93,22 @@ export default {
         { value: 2, label: "女" },
       ],
       form: {
-        nn: "",
+        sex: "",
+        age: "",
         xjg: "",
-        njg: "",
       },
-      rules: {
-        nn: [{ required: true, message: "请输入", trigger: "change" }],
-        xjg: [{ required: true, message: "请输入", trigger: "change" }],
-        njg: [{ required: true, message: "请输入", trigger: "change" }],
-      },
+      rules: {},
     };
   },
   components: {
     DialogMod,
   },
   created() {
+    for (const key in this.form) {
+      this.rules[key] = [
+        { required: true, message: "请输入", trigger: "change" },
+      ];
+    }
     if (this.$route.params.id && this.$route.params.name) {
       this.menuObj = this.$route.params;
     } else {
@@ -117,7 +119,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.RFIFormula(this.form)
+          this.total = this.$api.RFIFormula(this.form);
         } else {
           return false;
         }
@@ -125,7 +127,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-      this.total = 0
+      this.total = 0;
     },
     changelist() {
       if (this.menuObj.id) {

@@ -158,23 +158,18 @@ export default {
         xnsd: "",
         txynsd: "",
       },
-      rules: {
-        sex: [{ required: true, message: "请输入", trigger: "change" }],
-        age: [{ required: true, message: "请输入", trigger: "change" }],
-        height: [{ required: true, message: "请输入", trigger: "change" }],
-        weight: [{ required: true, message: "请输入", trigger: "change" }],
-        nl24h: [{ required: true, message: "请输入", trigger: "change" }],
-        tczl: [{ required: true, message: "请输入", trigger: "change" }],
-        nnsd: [{ required: true, message: "请输入", trigger: "change" }],
-        xnsd: [{ required: true, message: "请输入", trigger: "change" }],
-        txynsd: [{ required: true, message: "请输入", trigger: "change" }],
-      },
+      rules: {},
     };
   },
   components: {
     DialogMod,
   },
   created() {
+    for (const key in this.form) {
+      this.rules[key] = [
+        { required: true, message: "请输入", trigger: "change" },
+      ];
+    }
     if (this.$route.params.id && this.$route.params.name) {
       this.menuObj = this.$route.params;
     } else {
@@ -192,7 +187,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-      this.total = 0
+      this.total = 0;
     },
     changelist() {
       if (this.menuObj.id) {

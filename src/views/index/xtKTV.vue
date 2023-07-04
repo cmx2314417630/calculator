@@ -105,10 +105,6 @@ export default {
       total: 0, //计算结果
       menuObj: {}, //菜单对象
       dialogVisible: false,
-      options: [
-        { value: 1, label: "男" },
-        { value: 2, label: "女" },
-      ],
       form: {
         txhxnsdnd: "",
         txqxnsdnd: "",
@@ -116,19 +112,18 @@ export default {
         txcll: "",
         txhtz: "",
       },
-      rules: {
-        txhxnsdnd: [{ required: true, message: "请输入", trigger: "change" }],
-        txqxnsdnd: [{ required: true, message: "请输入", trigger: "change" }],
-        txsj: [{ required: true, message: "请输入", trigger: "change" }],
-        txcll: [{ required: true, message: "请输入", trigger: "change" }],
-        txhtz: [{ required: true, message: "请输入", trigger: "change" }],
-      },
+      rules: {},
     };
   },
   components: {
     DialogMod,
   },
   created() {
+    for (const key in this.form) {
+      this.rules[key] = [
+        { required: true, message: "请输入", trigger: "change" },
+      ];
+    }
     if (this.$route.params.id && this.$route.params.name) {
       this.menuObj = this.$route.params;
     } else {
@@ -147,7 +142,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-      this.total = 0
+      this.total = 0;
     },
     changelist() {
       if (this.menuObj.id) {

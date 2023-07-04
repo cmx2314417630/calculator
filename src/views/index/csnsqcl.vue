@@ -34,11 +34,7 @@
             </el-input>
           </el-form-item>
           <el-form-item label="尿量：" prop="nl">
-            <el-input
-              v-model.trim="form.nl"
-              type="number"
-              placeholder="请输入"
-            >
+            <el-input v-model.trim="form.nl" type="number" placeholder="请输入">
               <p slot="suffix">ml</p>
             </el-input>
           </el-form-item>
@@ -61,11 +57,7 @@
             </el-input>
           </el-form-item>
           <el-form-item label="时间：" prop="sj">
-            <el-input
-              v-model.trim="form.sj"
-              type="number"
-              placeholder="请输入"
-            >
+            <el-input v-model.trim="form.sj" type="number" placeholder="请输入">
               <p slot="suffix">min</p>
             </el-input>
           </el-form-item>
@@ -105,10 +97,6 @@ export default {
       total: 0, //计算结果
       menuObj: {}, //菜单对象
       dialogVisible: false,
-      options: [
-        { value: 1, label: "男" },
-        { value: 2, label: "女" },
-      ],
       form: {
         nns: "",
         nl: "",
@@ -116,19 +104,18 @@ export default {
         nysjjssxns: "",
         sj: "",
       },
-      rules: {
-        nns: [{ required: true, message: "请输入", trigger: "change" }],
-        nl: [{ required: true, message: "请输入", trigger: "change" }],
-        nysjqssxns: [{ required: true, message: "请输入", trigger: "change" }],
-        nysjjssxns: [{ required: true, message: "请输入", trigger: "change" }],
-        sj: [{ required: true, message: "请输入", trigger: "change" }],
-      },
+      rules: {},
     };
   },
   components: {
     DialogMod,
   },
   created() {
+    for (const key in this.form) {
+      this.rules[key] = [
+        { required: true, message: "请输入", trigger: "change" },
+      ];
+    }
     if (this.$route.params.id && this.$route.params.name) {
       this.menuObj = this.$route.params;
     } else {
@@ -139,7 +126,6 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          
         } else {
           return false;
         }
@@ -147,7 +133,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-      this.total = 0
+      this.total = 0;
     },
     changelist() {
       if (this.menuObj.id) {
