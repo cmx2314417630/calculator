@@ -26,7 +26,7 @@
         >
           <el-form-item label="尿尿素氮量（UUN）：" prop="UUN">
             <el-input v-model.trim="form.UUN" type="number" placeholder="请输入">
-              <p slot="suffix">mmol/L</p>
+              <p slot="suffix">g/24h</p>
             </el-input>
           </el-form-item>
           <el-form-item label="体重：" prop="kg">
@@ -35,7 +35,7 @@
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">μmol/L</p>
+              <p slot="suffix">kg</p>
             </el-input>
           </el-form-item>
         </el-form>
@@ -100,7 +100,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.RFIFormula(this.form);
+          this.total = this.$api.MDRDFormula(this.form);
         } else {
           return false;
         }

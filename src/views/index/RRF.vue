@@ -47,9 +47,9 @@
               <p slot="suffix">min</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="平均尿素氮含量：" prop="pjnsdhl">
+          <el-form-item label="平均尿素氮含量：" prop="BUN">
             <el-input
-              v-model.trim="form.pjnsdhl"
+              v-model.trim="form.BUN"
               type="number"
               placeholder="请输入"
             >
@@ -93,7 +93,7 @@ export default {
       menuObj: {}, //菜单对象
       dialogVisible: false,
       form: {
-        pjnsdhl: "",
+        BUN: "",
         IDUV: "",
         UUC: "",
         Period: "",
@@ -120,7 +120,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.RFIFormula(this.form);
+          this.total = this.$api.RRFFormula(this.form);
         } else {
           return false;
         }

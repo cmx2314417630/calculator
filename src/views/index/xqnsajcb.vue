@@ -24,18 +24,18 @@
           :show-message="false"
           label-position="left"
         >
-          <el-form-item label="血尿素氮：" prop="xnsd">
+          <el-form-item label="血尿素氮：" prop="BUN">
             <el-input
-              v-model.trim="form.xnsd"
+              v-model.trim="form.BUN"
               type="number"
               placeholder="请输入"
             >
               <p slot="suffix">mg/dl</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="血肌酐：" prop="xjg">
+          <el-form-item label="血肌酐：" prop="SCR">
             <el-input
-              v-model.trim="form.xjg"
+              v-model.trim="form.SCR"
               type="number"
               placeholder="请输入"
             >
@@ -79,8 +79,8 @@ export default {
       menuObj: {}, //菜单对象
       dialogVisible: false,
       form: {
-        xnsd: "",
-        xjg: "",
+        BUN: "",
+        SCR: "",
       },
       rules: {},
     };
@@ -104,7 +104,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.RFIFormula(this.form);
+          this.total = this.$api.BUNFormula(this.form);
         } else {
           return false;
         }
