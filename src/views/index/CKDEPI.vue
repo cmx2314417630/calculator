@@ -24,9 +24,23 @@
           :show-message="false"
           label-position="left"
         >
+          <el-form-item label="性别：" prop="sex">
+            <el-select v-model="form.sex" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="年龄：" prop="age">
-            <el-input v-model.trim="form.age" type="number" placeholder="请输入">
-              <p slot="suffix">mmol/L</p>
+            <el-input
+              v-model.trim="form.age"
+              type="number"
+              placeholder="请输入"
+            >
             </el-input>
           </el-form-item>
           <el-form-item label="血清肌酐：" prop="xqjg">
@@ -35,7 +49,7 @@
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">μmol/L</p>
+              <p slot="suffix">mg/dl</p>
             </el-input>
           </el-form-item>
         </el-form>
@@ -74,7 +88,12 @@ export default {
       total: 0, //计算结果
       menuObj: {}, //菜单对象
       dialogVisible: false,
+      options: [
+        { value: 1, label: "男" },
+        { value: 2, label: "女" },
+      ],
       form: {
+        sex: "",
         age: "",
         xqjg: "",
       },
@@ -100,7 +119,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.RFIFormula(this.form);
+          this.total = this.$api.CKDEPIFormula(this.form);
         } else {
           return false;
         }

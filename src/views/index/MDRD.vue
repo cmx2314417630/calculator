@@ -43,13 +43,14 @@
             >
             </el-input>
           </el-form-item>
+         
           <el-form-item label="血肌酐：" prop="xjg">
             <el-input
               v-model.trim="form.xjg"
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">μmol/L</p>
+              <p slot="suffix">mg/dl</p>
             </el-input>
           </el-form-item>
         </el-form>

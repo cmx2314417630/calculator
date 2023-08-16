@@ -100,7 +100,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.MDRDFormula(this.form);
+          this.total = this.$api.DPIFormula(this.form);
         } else {
           return false;
         }

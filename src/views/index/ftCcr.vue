@@ -191,6 +191,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.total = this.$api.PDCcrFormula(this.form);
         } else {
           return false;
         }

@@ -44,6 +44,15 @@
               <p slot="suffix">cm</p>
             </el-input>
           </el-form-item>
+          <el-form-item label="体重：" prop="weight">
+            <el-input
+              v-model.trim="form.weight"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">kg</p>
+            </el-input>
+          </el-form-item>
           <el-form-item label="尿量：" prop="nl">
             <el-input v-model.trim="form.nl" type="number" placeholder="请输入">
               <p slot="suffix">L</p>
@@ -110,6 +119,7 @@ export default {
       form: {
         sex: "",
         height: "",
+        weight: "",
         nl: "",
         nnsd: "",
         ndbls: "",

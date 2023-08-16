@@ -20,7 +20,7 @@
           :model="form"
           :hide-required-asterisk="true"
           :rules="rules"
-          label-width="120px"
+          label-width="140px"
           :show-message="false"
           label-position="left"
         >
@@ -62,7 +62,16 @@
               <p slot="suffix">cm</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="24h总尿量：" prop="nl24h">
+          <el-form-item label="血清尿素：" prop="xqns">
+            <el-input
+              v-model.trim="form.xqns"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">mmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="24h尿量：" prop="nl24h">
             <el-input
               v-model.trim="form.nl24h"
               type="number"
@@ -71,40 +80,40 @@
               <p slot="suffix">ml</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="透出总量：" prop="tczl">
+          <el-form-item label="24h尿中尿素：" prop="nzns24h">
             <el-input
-              v-model.trim="form.tczl"
+              v-model.trim="form.nzns24h"
+              type="number"
+              placeholder="请输入"
+            >
+              <p slot="suffix">mmol/L</p>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="24h腹透液总量：" prop="ftyzl24h">
+            <el-input
+              v-model.trim="form.ftyzl24h"
               type="number"
               placeholder="请输入"
             >
               <p slot="suffix">ml</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="尿尿素氮：" prop="nnsd">
+          <el-form-item label="腹透液中尿素：" prop="ftyzns">
             <el-input
-              v-model.trim="form.nnsd"
+              v-model.trim="form.ftyzns"
               type="number"
               placeholder="请输入"
             >
               <p slot="suffix">mmol/L</p>
             </el-input>
           </el-form-item>
-          <el-form-item label="血尿素氮：" prop="xnsd">
+          <el-form-item label="每周腹透天数：" prop="mzftts">
             <el-input
-              v-model.trim="form.xnsd"
+              v-model.trim="form.mzftts"
               type="number"
               placeholder="请输入"
             >
-              <p slot="suffix">mmol/L</p>
-            </el-input>
-          </el-form-item>
-          <el-form-item label="透析液尿素氮：" prop="txynsd">
-            <el-input
-              v-model.trim="form.txynsd"
-              type="number"
-              placeholder="请输入"
-            >
-              <p slot="suffix">mmol/L</p>
+              <p slot="suffix">天</p>
             </el-input>
           </el-form-item>
         </el-form>
@@ -152,11 +161,12 @@ export default {
         age: "",
         height: "",
         weight: "",
+        xqns: "",
         nl24h: "",
-        tczl: "",
-        nnsd: "",
-        xnsd: "",
-        txynsd: "",
+        nzns24h: "",
+        ftyzl24h: "",
+        ftyzns: "",
+        mzftts: "",
       },
       rules: {},
     };
@@ -180,6 +190,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+           this.total = this.$api.ftKTVFormula(this.form);
         } else {
           return false;
         }
