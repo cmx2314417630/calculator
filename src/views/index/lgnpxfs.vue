@@ -116,7 +116,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.total = this.$api.RFIFormula(this.form);
+          this.total = this.$api.FENaFormula(this.form);
         } else {
           return false;
         }

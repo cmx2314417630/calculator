@@ -155,6 +155,7 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
       this.total = 0;
+      this.form.sex = ''
     },
     changelist() {
       if (this.menuObj.id) {

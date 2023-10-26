@@ -53,10 +53,10 @@ export const FENaFormula = (data) => {
   let xn = Number(data.xn);
   let xjg = Number(data.xjg);
   let njg = Number(data.njg);
-  let num = [(nn * xjg) / (xn * njg)];
+  let num = [(nn * xjg) / (xn * njg)]*100;
   num = num.toFixed(2);
   if (isNaN(num)) return 0;
-  return num;
+  return num + '%';
 };
 // 蛋白质摄入量（DPI）
 // 尿尿素氮量（UUN） 体重(kg)

@@ -128,6 +128,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+      this.form.sex = ''
       this.total = 0;
     },
     changelist() {
