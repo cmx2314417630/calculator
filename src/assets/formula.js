@@ -25,12 +25,13 @@ export const BSAFormula = (data) => {
 // R(透析前尿素氮/透析后尿素氮)
 // T(透析时间) UF(透析超滤量) W(透析后体重)
 export const xuetouKTVFormula = (data) => {
-  let R = Number(data.txqxnsdnd / data.txhxnsdnd);
+  let R = Number(data.txhxnsdnd/data.txqxnsdnd);
   let T = Number(data.txsj);
   let W = Number(data.txhtz);
   let UF = Number(data.txcll);
   let num = 0;
-  num = -Math.log(R - 0.008 * T) + ((4 - 3.5 * R) * UF) / W;
+  // -ln(R-0.03)+((4-3.5*R)*UF/透析后体重）
+  num = -Math.log(R - 0.03) + ((4 - 3.5 * R) * UF) / W;
   num = num.toFixed(3);
   if (isNaN(num)) return 0;
   return num;
@@ -53,10 +54,10 @@ export const FENaFormula = (data) => {
   let xn = Number(data.xn);
   let xjg = Number(data.xjg);
   let njg = Number(data.njg);
-  let num = [(nn * xjg) / (xn * njg)]*100;
+  let num = [(nn * xjg) / (xn * njg)] * 100;
   num = num.toFixed(2);
   if (isNaN(num)) return 0;
-  return num + '%';
+  return num + "%";
 };
 // 蛋白质摄入量（DPI）
 // 尿尿素氮量（UUN） 体重(kg)
@@ -134,7 +135,7 @@ export const RRUCFormula = (data) => {
   let nl = Number(data.nl); //尿量
   let nysjqssxns = Number(data.nysjqssxns); //尿液收集起始时血尿素
   let nysjjssxns = Number(data.nysjjssxns); //尿液收集结束时血尿素
-  let sj = Number(data.nl); //时间
+  let sj = Number(data.sj); //时间
   let num = (nns * nl) / (nysjqssxns * 0.25 + nysjjssxns * 0.75 * sj);
   num = num.toFixed(2);
   if (isNaN(num)) return 0;
@@ -144,11 +145,12 @@ export const RRUCFormula = (data) => {
 export const PDCcrFormula = (data) => {
   let xjg = Number(data.xjg); //血肌酐浓度
   let txyxzjg = Number(data.txyxzjg); //腹透液肌浓度
-  let ftyylzl = Number(data.nysjqssxns); //24h腹透液出量
+  let ftyylzl = Number(data.ftyylzl); //24h腹透液出量
   let a = (txyxzjg / xjg) * ftyylzl;
   let njg = Number(data.njg); //尿肌酐浓度
   let nl24h = Number(data.nl24h); //24h尿量
   let b = (njg / xjg) * nl24h;
+  console.log(xjg, txyxzjg, ftyylzl, a, njg, nl24h, b);
   let num = (a + b) * 7;
   num = num.toFixed(2);
   if (isNaN(num)) return 0;
