@@ -31,7 +31,8 @@ export const xuetouKTVFormula = (data) => {
   let UF = Number(data.txcll);
   let num = 0;
   // -ln(R-0.03)+((4-3.5*R)*UF/透析后体重）
-  num = -Math.log(R - 0.03) + ((4 - 3.5 * R) * UF) / W;
+  // num = -Math.log(R - 0.03) + ((4 - 3.5 * R) * UF) / W;
+  num = -Math.log(R-0.008*T)+(4-3.5*R)*UF/W
   num = num.toFixed(3);
   if (isNaN(num)) return 0;
   return num;
